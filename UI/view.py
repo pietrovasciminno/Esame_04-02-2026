@@ -26,9 +26,7 @@ class View:
     def set_controller(self, controller):
         self._controller = controller
 
-    def popola_dropdown_ruolo(self, ruoli):
-        self.dd_ruolo.options = [ft.dropdown.Option(text=r) for r in ruoli]
-        self.dd_ruolo.update()
+
 
     def show_alert(self, message):
         self._alert.show_alert(message)
@@ -40,6 +38,7 @@ class View:
         self.txt_title = ft.Text("Gestione Artisti", size=30, weight=ft.FontWeight.BOLD)
 
         self.dd_ruolo = ft.Dropdown(label="Seleziona ruolo artista", width=250)
+        self._controller.popola_dropdown_ruolo()
 
         self.dd_iniziale = ft.Dropdown(label="Artista Iniziale", width=250, disabled=True)
 
@@ -47,7 +46,7 @@ class View:
 
         self.btn_crea_grafo = ft.ElevatedButton("Crea Grafo", on_click=self._controller.handle_crea_grafo)
         self.btn_classifica = ft.ElevatedButton("Classifica", disabled=True, on_click=self._controller.handle_classifica)
-        self.btn_cerca_percorso = ft.ElevatedButton("Cerca percorso", disabled=True)
+        self.btn_cerca_percorso = ft.ElevatedButton("Cerca percorso", disabled=True, on_click=self._controller.handle_percorso)
 
         self.list_risultato = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
 
